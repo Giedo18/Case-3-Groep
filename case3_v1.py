@@ -50,6 +50,9 @@ def OpenChargeMap():
         ## Inleiding van de pagina
         Op deze pagina is informatie te lezen over de informatie die is verkregen uit de dataset die is verkregen
         met behulp van de OpenChargeMap.
+        """)
+        
+    st.write("""
         Eerst is er een data analyse gedaan over de gehele dataset. Aangezien het doel was om een kaart te tonen van een
         gebied naar keuze waarin de laadpunten weergegeven worden, is er een data selectie gemaakt van de data die hiervoor
         nodig is. Er is gekeken naar provinciale data zodat het aantal laadpalen per gebied gekoppeld konden worden aan 
@@ -59,26 +62,27 @@ def OpenChargeMap():
         """)
     
     Laadpalen = pd.read_csv("Laadpalen.csv")
-    Locatiedata = {'Plaats':  ['Nederland','Amsterdam'],
+#     Locatiedata = {'Plaats':  ['Nederland','Amsterdam'],
         
-                    'Lon': [["53.5", "5.4"],
-                            ["52.2", "4.66"]],
+#                     'Lon': [["53.5", "5.4"],
+#                             ["52.2", "4.66"]],
                
-                    'Lat' : [["50.8", "5.3"]
-                             ["52.46", "5.10"]]}
+#                     'Lat' : [["50.8", "5.3"]
+#                              ["52.46", "5.10"]]}
 
 
     st.write(Laadpalen.head(3))
+  
 
     st.write("""
-        ##Kaart met laadpalen
+        ## Kaart met laadpalen
         Hier zijn alle laadpalen te zien in Nederland. De kleur geeft aan waar in Nederland veel of weinig laadpalen zijn.
         Wanneer de stipjes per laadpaal groen zijn, betekend dat er in diezelfde postcode soort veel laadpalen zijn. Hoe
         roder het stipje wordt, hoe minder laadpalen er in de postcode groep zullen zijn.
         
         De kaart is ingeladen d.m.v. folium
         """)
-
+    
     ####################################################################################################################
 
     def add_categorical_legend(folium_map, title, colors, labels):
@@ -201,7 +205,17 @@ def OpenChargeMap():
             return "darkred"
     
     ################################################################################################################
- 
+#     plaatsnaam = 'Amsterdam'
+    
+#     lon1 = Locatiedata[Locatiedata['Plaats'] == plaatsnaam]['Lon'].values
+#     lat1 = Locatiedata[Locatiedata['Plaats'] == plaatsnaam]['Lat'].values
+
+   #lon = ["53.5", "5.4"]
+    #lat = ["50.8", "5.3"]
+    
+    #plaatsnaam = 'Amsterdam'
+    #long_lat = Locatiedata[Locatiedata['Plaats'] == plaatsnaam]['Locatie'].values
+    
     m = folium.Map(tiles = 'cartodbpositron')
     
     m.fit_bounds([[53.5, 5.4], [50.8, 5.3]])
@@ -217,7 +231,7 @@ def OpenChargeMap():
         marker.add_to(m)
     
 
-    m = add_categorical_legend(m,
+        m = add_categorical_legend(m,
                                'Aantal laadpalen per postcode groep',
                                colors = ['green', 'lime', 'greenyellow', 'yellow', 'darkorange',
                                          'red', 'darkred'],
@@ -226,14 +240,13 @@ def OpenChargeMap():
 
     st_data = st_folium(m, width = 725)
     
-       st.write("""
+    st.write("""
         ##Conclusie
         Er is duidelijk te zien op de kaart dat hoe dichter je bij de randstad komt hoe meer laadpalen er zullen zijn in
         het gebied. Een logische uitkomst aangezien de randstad dichterbevolkt is, en de aannamen gemaakt kan worden dat
         hierdoor dus meer elektrische auto's zullen rijden in deze gebieden. Die natuurlijk allemaal opgeladen dienen te
         worden
         """)
-    
 
 
 # In[ ]:
