@@ -50,7 +50,7 @@ def OpenChargeMap():
         Op deze pagina is informatie te lezen over de informatie die is verkregen uit de dataset die is verkregen
         met behulp van de OpenChargeMap.""")
     
-#     Laadpalen = pd.read_csv("Laadpalen.csv")
+     Laadpalen = pd.read_csv("Laadpalen.csv")
 #     Locatiedata = {'Plaats': ['Nederland',
 #                    'Amsterdam',
 #                    'Maastricht',
